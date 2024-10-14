@@ -12,7 +12,7 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 public class ToastPlugin extends Plugin {
 
     @PluginMethod
-    public void echo(PluginCall call) {
+    public void showMessage(PluginCall call) {
         String value = call.getString("value");
 
         Toast.makeText(this.getContext(), value, Toast.LENGTH_SHORT).show();

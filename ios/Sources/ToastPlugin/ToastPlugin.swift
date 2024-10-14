@@ -11,10 +11,10 @@ public class ToastPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "ToastPlugin"
     public let jsName = "Toast"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "showMessage", returnType: CAPPluginReturnPromise)
     ]
 
-    @objc func echo(_ call: CAPPluginCall) {
+    @objc func showMessage(_ call: CAPPluginCall) {
         let value = call.getString("value") ?? "the value is empty!"
         call.resolve(["value": value])
     }

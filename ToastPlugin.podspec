@@ -14,4 +14,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '13.0'
   s.dependency 'Capacitor'
   s.swift_version = '5.1'
+  s.prepare_command = <<-CMD
+    plist=${PODS_TARGET_SRCROOT}/../../../App/Info.plist
+    /usr/libexec/PlistBuddy -c "Add NSBluetoothAlwaysUsageDescription string 'We need access to Bluetooth to communicate with nearby devices.'" $plist
+    /usr/libexec/PlistBuddy -c "Add NSBluetoothPeripheralUsageDescription string 'We need Bluetooth access to communicate with other devices.'" $plist
+  CMD
 end

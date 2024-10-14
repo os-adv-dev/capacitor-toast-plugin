@@ -1,3 +1,3 @@
 export interface ToastPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  showMessage(options: { value: string }): Promise<{ value: string }>;
 }
