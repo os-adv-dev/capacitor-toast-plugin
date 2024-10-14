@@ -1,4 +1,4 @@
-# toast-plugin
+# Tooast plugin
 
 Toast message using Capacitor plugin
 
