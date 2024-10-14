@@ -15,9 +15,7 @@ public class ToastPlugin: CAPPlugin, CAPBridgedPlugin {
     ]
 
     @objc func echo(_ call: CAPPluginCall) {
-        
-        let value = call.getString("value") ?? ""
-        
+        let value = call.getString("value") ?? "the value is empty!"
         call.resolve(["value": value])
     }
 }
