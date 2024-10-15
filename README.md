@@ -1,9 +1,6 @@
 # Capacitor Toast Plugin
 
-# Capacitor Toast Plugin
-
 ![Build Status](https://github.com/os-adv-dev/capacitor-toast-plugin/actions/workflows/main.yml/badge.svg)
-![npm](https://img.shields.io/npm/v/capacitor-toast-plugin)
 
 A simple Capacitor plugin that displays toast messages on Android and iOS.
 
