@@ -1,44 +1,28 @@
-name: CI
+name: Run Unit Tests
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  pull_request :
+    branches : [ main ]
+  push :
+    branches : [ main ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  test-feature:
+    runs-on: macOS-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]  # Test against different Node.js versions
-        java-version: [11, 17]      # Define Java versions for Android tests
+    needs: build
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4.1.0
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3.13.0
+        with:
+          distribution: 'adopt'
+          java-version: '17'
 
-    # Setup Node.js environment for JavaScript/TypeScript tests
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Grant execute permissions for gradlew
+        run: chmod +x ./gradlew
 
-    # Install Node.js dependencies
-    - run: npm install
-
-    # Run the JavaScript unit tests
-    - run: npm test
-
-    # Setup Java for Android unit tests
-    - name: Setup JDK ${{ matrix.java-version }}
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt' # Or 'zulu'
-        java-version: ${{ matrix.java-version }}
-
-    # Run the Android unit tests with gradlew
-    - name: Run Android Unit Tests
-      run: ./gradlew test --no-daemon
+      - name: Run Tests with Gradle
+        run: ./gradlew test
