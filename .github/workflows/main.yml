@@ -14,23 +14,8 @@ jobs:
 
     strategy:
       matrix:
-name: CI
+        node-version: [14.x, 16.x]  # Test against different Node.js versions
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  test-node:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]  # Test against different Node.js versions
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -40,23 +25,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-
-    # Install Node.js dependencies
-    - name: Install dependencies
-      run: npm install
-
-    # Run the JavaScript unit tests
-    - name: Run Node.js Tests
-      run: npm test
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    # Setup Node.js environment for JavaScript/TypeScript tests
-    - name: Setup Node.js 16.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16.x' # Set the Node.js version you want to test with
 
     # Install Node.js dependencies
     - name: Install dependencies
