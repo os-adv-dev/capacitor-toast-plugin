@@ -15,6 +15,13 @@ public class ToastPlugin extends Plugin {
     public void showMessage(PluginCall call) {
         String value = call.getString("value");
 
+        if(value.isEmpty()) {
+            JSObject error = new JSObject();
+            error.put("message", "The value cannot be empty!");
+            call.resolve(error);
+            return;
+        }
+
         Toast.makeText(this.getContext(), value, Toast.LENGTH_SHORT).show();
 
         JSObject ret = new JSObject();
