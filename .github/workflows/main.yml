@@ -50,10 +50,10 @@ jobs:
         distribution: 'adopt'
         java-version: '17'
 
-    # Grant execute permissions for gradlew
+    # Grant execute permissions for gradlew (update path to android/ if needed)
     - name: Grant execute permissions for gradlew
-      run: chmod +x ./gradlew
+      run: chmod +x ./android/gradlew
 
-    # Run the Java/Android unit tests
+    # Run the Java/Android unit tests with Gradle
     - name: Run Java/Android Unit Tests with Gradle
-      run: ./gradlew test
+      run: ./android/gradlew test
