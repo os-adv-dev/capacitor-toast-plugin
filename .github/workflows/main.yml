@@ -14,18 +14,22 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x] # Test against different Node.js versions
+        node-version: [14.x, 16.x]  # Test against different Node.js versions
+        java-version: [11, 17]      # Define Java versions for Android tests
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    # Setup Node.js environment for JavaScript/TypeScript tests
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
 
+    # Install Node.js dependencies
     - run: npm install
 
+    # Run the JavaScript unit tests
     - run: npm test
 
     # Setup Java for Android unit tests
