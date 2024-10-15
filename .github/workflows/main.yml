@@ -27,3 +27,14 @@ jobs:
     - run: npm install
 
     - run: npm test
+
+    # Setup Java for Android unit tests
+    - name: Setup JDK ${{ matrix.java-version }}
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt' # Or 'zulu'
+        java-version: ${{ matrix.java-version }}
+
+    # Run the Android unit tests with gradlew
+    - name: Run Android Unit Tests
+      run: ./gradlew test --no-daemon
