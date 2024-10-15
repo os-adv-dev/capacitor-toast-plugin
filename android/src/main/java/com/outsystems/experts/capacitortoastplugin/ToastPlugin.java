@@ -1,7 +1,5 @@
 package com.outsystems.experts.capacitortoastplugin;
 
-import android.widget.Toast;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -11,21 +9,19 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "Toast")
 public class ToastPlugin extends Plugin {
 
+    private final JSObject result = new JSObject();
+
     @PluginMethod
     public void showMessage(PluginCall call) {
         String value = call.getString("value");
 
         if(value.isEmpty()) {
-            JSObject error = new JSObject();
-            error.put("message", "The value cannot be empty!");
-            call.resolve(error);
+            result.put("message", "The value cannot be empty!");
+            call.resolve(result);
             return;
         }
 
-        Toast.makeText(this.getContext(), value, Toast.LENGTH_SHORT).show();
-
-        JSObject ret = new JSObject();
-        ret.put("value", value);
-        call.resolve(ret);
+        result.put("value", value);
+        call.resolve(result);
     }
 }

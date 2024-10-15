@@ -1,11 +1,13 @@
-# Toast plugin
+# Capacitor Toast Plugin
 
-Toast message using Capacitor plugin
+A simple Capacitor plugin that displays toast messages on Android and iOS.
 
-## Install
+## Installation
+
+You can install this plugin via npm or directly from the GitHub repository:
 
 ```bash
-npm install toast-plugin
+npm install capacitor-toast-plugin
 npx cap sync
 ```
 
@@ -26,11 +28,45 @@ npx cap sync
 showMessage(options: { value: string; }) => Promise<{ value: string; }>
 ```
 
+# Example of usage
+```typescript
+import { Toast } from 'capacitor-toast-plugin';
+
+Toast.showMessage({ value: 'Hello from the Toast Plugin!' })
+  .then(result => {
+    console.log(result.value);  // This will log: "Hello from the Toast Plugin!"
+  })
+  .catch(error => {
+    console.error('Error showing toast:', error);
+  });
+
+```
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: string; }</code> |
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+### Building the Plugin Locally
+
+If you want to make changes to the plugin, clone this repository and build the plugin locally.
+
+1.	Clone the repo:    
+```bash
+    git clone https://github.com/os-adv-dev/capacitor-toast-plugin.git
+    cd capacitor-toast-plugin
+```
+
+2.	Install the dependencies:
+```bash
+    npm install
+```
+
+3.	Sync with Capacitor’s native platforms:
+```bash
+   npx cap sync
+```
 
 --------------------
 
